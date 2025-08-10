@@ -17,7 +17,7 @@ app.use((req,res,next)=>{
     if(token != null){
         token=token.replace("Bearer ", "");
         //methanadi thmai jwt import krgnn ona wenne
-        jwt.verify(token,"malshan12345",
+        jwt.verify(token,process.env.SECRET_KEY,
             (err,decoded)=>{
               
            if(!err){

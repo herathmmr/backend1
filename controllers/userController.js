@@ -1,9 +1,9 @@
 import UserModel from "../models/user.js";
 import bcrypt from "bcrypt";
 import  jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 
-
-
+dotenv.config();
 
 export function registerUser(req, res) {
     const userData = req.body;
@@ -47,7 +47,7 @@ export function loginUser(req,res){
                     lastName : user.lastName,
                     email : user.email,
                     role : user.role,        // me thiyenne api encrypt krnn ona data tika meke thiyenne
-                                      },"malshan12345") //methna malshan1234 kiynne website eka api dana password eka //me comment ekath ain wenna ona commit krddi
+                                      },process.env.SECRET_KEY) //methna malshan1234 kiynne website eka api dana password eka //me comment ekath ain wenna ona commit krddi
                 res.json({message :" login successfull",token:token});
             }else{
                 res.status(404).json({error:"login fail"})
