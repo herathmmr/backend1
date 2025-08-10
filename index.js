@@ -4,8 +4,9 @@ import mongoose, { mongo } from "mongoose"
 import userRouter from "./routes/userRouter.js";
 import produCtrouter from "./routes/productRoute.js";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 
-
+dotenv.config();
 let app= express();
 
 app.use(bodyParser.json());
@@ -32,7 +33,7 @@ app.use((req,res,next)=>{
 
 
 
-let mongoUrl ="mongodb+srv://root:1234@cluster1.jshowbd.mongodb.net/userDB2?retryWrites=true&w=majority&appName=Cluster1";//"kalin methana thmayi mongodb url eka dala thibbe" //mongoUrl kiynne variable ekak declare kre
+let mongoUrl =process.env.MONGO_URL;//"kalin methana thmayi mongodb url eka dala thibbe" //mongoUrl kiynne variable ekak declare kre
 
 mongoose.connect(mongoUrl)
 
