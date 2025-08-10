@@ -1,0 +1,53 @@
+import express from "express"
+import bodyParser from "body-parser"
+import mongoose, { mongo } from "mongoose"
+import userRouter from "./routes/userRouter.js";
+import produCtrouter from "./routes/productRoute.js";
+import jwt from "jsonwebtoken";
+
+
+let app= express();
+
+app.use(bodyParser.json());
+
+app.use((req,res,next)=>{
+    let token =req.header("Authorization")
+    console.log(token)
+    if(token != null){
+        token=token.replace("Bearer ", "");
+        //methanadi thmai jwt import krgnn ona wenne
+        jwt.verify(token,"malshan12345",
+            (err,decoded)=>{
+              
+           if(!err){
+            //console.log(decoded); ohom dala thma terminal eken blagnn pluwn wenne Bearer nthuw pennane kohomda kiyla.ek enne na hbei.mekt pse ek thm mekt pahla tiyenne
+            req.user=decoded; // req.user kiyna eka ona thanakat gnn pluwn.productController eke thiyenw aragen.
+           } 
+        });
+        
+    }
+    next()
+})
+
+
+
+
+let mongoUrl ="mongodb+srv://root:1234@cluster1.jshowbd.mongodb.net/userDB2?retryWrites=true&w=majority&appName=Cluster1";//"kalin methana thmayi mongodb url eka dala thibbe" //mongoUrl kiynne variable ekak declare kre
+
+mongoose.connect(mongoUrl)
+
+let connection =mongoose.connection // meken thama connection eka hduwe
+connection.once("open",()=>{
+    console.log("MongoDB connection successfull")
+})
+
+app.use("/api/users",userRouter);
+app.use("/api/products",produCtrouter);
+
+
+
+
+
+app.listen(3003,()=>{
+    console.log("server is running on 3003")
+})
