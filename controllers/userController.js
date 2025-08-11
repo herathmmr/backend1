@@ -8,7 +8,7 @@ dotenv.config();
 export function registerUser(req, res) {
     const userData = req.body;
     userData.password = bcrypt.hashSync(userData.password,10);
-    
+
     const newUser = new UserModel(userData);
 
     newUser.save()
@@ -47,7 +47,8 @@ export function loginUser(req,res){
                     firstName : user.firstName,
                     lastName : user.lastName,
                     email : user.email,
-                    role : user.role,        // me thiyenne api encrypt krnn ona data tika meke thiyenne
+                    role : user.role,
+                    profilePicture:user.profilePicture,        // me thiyenne api encrypt krnn ona data tika meke thiyenne
                                       },process.env.SECRET_KEY) //methna malshan1234 kiynne website eka api dana password eka //me comment ekath ain wenna ona commit krddi
                 res.json({message :" login successfull",token:token});
             }else{
