@@ -51,3 +51,5 @@ const UserModel =mongoose.model("users",userSchema);
 
 export default UserModel;
 //models hdala iwar unata passe hadanne userController eka
+
+
