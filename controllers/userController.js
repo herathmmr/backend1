@@ -8,6 +8,7 @@ dotenv.config();
 export function registerUser(req, res) {
     const userData = req.body;
     userData.password = bcrypt.hashSync(userData.password,10);
+    
     const newUser = new UserModel(userData);
 
     newUser.save()

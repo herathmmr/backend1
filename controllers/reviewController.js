@@ -5,6 +5,20 @@ export function addReview(req,res){
         res.state(401).json({
             message : "please login and try again"
         })
+        return
     }
-    return
+    const data = req.body;
+
+    data.name =req.user.firstName +" "+req.user.lastName;
+    data.profilePicture = req.user.profilePicture;
+    data.email = req.user.email;
+
+    const newReview = new Review(data)
+
+    newReview.save().then(()=>{
+        res.json({message : "Review added successfull"});
+    }).catch((error)=>{
+        res.status(500).json({error :"Review adition faild"})
+    })
+    
 }
