@@ -31,7 +31,7 @@ const reviewSchema = new mongoose.Schema({
     profilePicture:{
         type : String,
         required : true,
-        default : "url"
+        default : "https://images.app.goo.gl/kP5SNwBts5ZFh5UJA"
     }
      
 });
