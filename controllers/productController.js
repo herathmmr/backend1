@@ -17,10 +17,6 @@ export async function addProduct(req, res) {
         })
         return
     }
-
-
-
-
     const data = req.body;
     const newProduct = new Product(data);
 
@@ -38,4 +34,13 @@ export async function addProduct(req, res) {
          res.status(500).json({ message: "Product add failed", error: error.message });
 
       }
+}
+export async function getProducts(req,res){
+    try{
+        const products = await Product.find();
+        res.json(products);
+
+    }catch{
+        res.status(500).json({message : "faild to get products"})
+    }
 }
