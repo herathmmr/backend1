@@ -1,4 +1,5 @@
 import Product from "../models/products.js";
+import { isItAdmin } from "./userController.js"; // Importing the isItAdmin function
 
 export async function addProduct(req, res) {
 
@@ -62,7 +63,7 @@ export async function getProducts(req,res){
     }
 }
 
-function isItAdmin(req){
+/*function isItAdmin(req){
     
     let isAdmin = false;
     if(req.user != null && req.user.role == "admin"){
@@ -70,3 +71,4 @@ function isItAdmin(req){
     }
     return isAdmin;
 }
+    code eke validation eka thiygnn ona nisa meka userController ekt dnw */
