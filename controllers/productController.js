@@ -93,3 +93,25 @@ export async function getProducts(req,res){
             res.status(500).json({message : "faild to update product"})
         }
     }
+
+
+
+    export async function deleteProduct(req,res){
+        try{
+            if(isItAdmin){
+                const key = req.params.key;
+                await Product.deleteOne({key:key})
+                res.json({message : "product deleted successfully"})
+
+            }else{
+                res.status(401).json({
+                    message:"your not authorize user.so you cant delete product"
+                })
+                return
+            }
+
+        }catch(e){
+            res.status(500).json({message : "faild to delete product"})
+        }
+
+    }
