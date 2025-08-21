@@ -36,11 +36,37 @@ export async function addProduct(req, res) {
       }
 }
 export async function getProducts(req,res){
-    try{
-        const products = await Product.find();
-        res.json(products);
+    /*let isAdmin = false;
+    if(req.user != null && req.user.role == "admin"){
+        isAdmin = true;
+    }
+    */// meka thama isItAdmin function eka.pahala hdala thiyenne e function eka.
+    
 
-    }catch{
+    try{
+        if(isItAdmin(req)){
+            const products = await Product.find();
+            res.json(products);
+            return;
+        }else{
+            const products = await Product.find({availability : true});
+            res.json(products);
+            return;
+        }
+
+       /*const products = await Product.find();
+        res.json(products); okkotama blanna pluwan widiya   */
+
+    }catch(e){
         res.status(500).json({message : "faild to get products"})
     }
+}
+
+function isItAdmin(req){
+    
+    let isAdmin = false;
+    if(req.user != null && req.user.role == "admin"){
+        return isAdmin = true;
+    }
+    return isAdmin;
 }
