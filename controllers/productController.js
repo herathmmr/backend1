@@ -72,3 +72,24 @@ export async function getProducts(req,res){
     return isAdmin;
 }
     code eke validation eka thiygnn ona nisa meka userController ekt dnw */
+    export async function updateProduct(req,res){
+        try{
+            if(isItAdmin(req)){
+                const key = req.params.key;
+                const data = req.body;  
+                await Product.updateOne({key:key},data);
+                res.json({message : "product updated successfully"})
+                return;
+                //methanin thmayi key ek put request ekakin ywana widiya,aneth data tika body  eken wens krla ywnw
+
+            }else{
+                res.status(401).json({
+                    message:"your not authorize user.so you cant update product"
+                })
+                return
+            }
+
+        }catch(e){
+            res.status(500).json({message : "faild to update product"})
+        }
+    }
