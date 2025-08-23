@@ -34,6 +34,11 @@ const productSchema = new mongoose.Schema({
         type : Boolean,
         required : true,
         default : true,
+    },
+    image :{
+        type:[String],//multiple images add krana widiya.array ekkin eka krnne
+        required : true,
+        default : ["https://www.freeiconspng.com/uploads/no-image-icon-6.png"]
     }
 });
 

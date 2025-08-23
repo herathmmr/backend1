@@ -6,7 +6,7 @@ const produCtrouter = express.Router();
 
 produCtrouter.post("/",addProduct);
 produCtrouter.get("/",getProducts);
-produCtrouter.put("/:key",updateProduct)
+produCtrouter.put("/:key",updateProduct);
 produCtrouter.delete("/:key",deleteProduct);
 
 
