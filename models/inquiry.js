@@ -9,7 +9,7 @@ const inquirySchema =  new mongoose.Schema({
    },
    email : {
         type : String,
-        requires : true,
+        required : true,
         unique : true,
     },
     massage :{
@@ -19,7 +19,7 @@ const inquirySchema =  new mongoose.Schema({
     },
     phoneNumber :{
         type : String,
-        requred : true,
+        required : true,
     },
     date :{
         type : Date,
@@ -33,7 +33,7 @@ const inquirySchema =  new mongoose.Schema({
 
     },
     isResolved :{
-        trye : Boolean,
+        type : Boolean,
         required : true,
         default : false,
     },

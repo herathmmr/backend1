@@ -6,6 +6,7 @@ import produCtrouter from "./routes/productRoute.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import reviewRouter from "./routes/reviewRoute.js";
+import inquiryRoute from "./routes/inquiryRoutes.js";
 
 dotenv.config();
 let app= express();
@@ -46,7 +47,7 @@ connection.once("open",()=>{
 app.use("/api/users",userRouter);
 app.use("/api/products",produCtrouter);
 app.use("/api/reviews",reviewRouter);
-
+app.use("/api/inquiries",inquiryRoute);
 
 
 
