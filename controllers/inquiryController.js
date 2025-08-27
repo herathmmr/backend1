@@ -1,4 +1,4 @@
-import { response } from "express";
+import e, { response } from "express";
 import Inquiry  from "../models/inquiry.js";
 import { isItAdmin, isItCustomer } from "./userController.js";
 
@@ -80,5 +80,39 @@ export async function deleteInquiry(req,res){
     }catch(error){
         res.status(500).json({message :"inquiry delete fail"})
 
+    }
+}
+export async function updateInquiry(req,res){
+    try{
+        const id = req.params.id;
+        const data = req.body;
+        if(isItAdmin(req)){
+            await Inquiry.updateOne({id:id}, data);
+            res.json({message : "inquiry update successfully"});
+            return;
+        }else if(isItCustomer(req)){
+            const inquiry = await Inquiry.findOne({id:id});
+            if(inquiry == null){
+                res.json({message :" inquiry not found"});
+                return;
+            }
+            if(inquiry.email == req.user.email){
+                await Inquiry.updateOne({id:id}, {massage : data.massage});
+                res.json({message : "cus update successfully"});
+                return;
+            }else{
+                res.status(403).json({
+                    message : "you are not authorize to access this action"
+                });
+                return;
+            }
+        }else{
+            res.status(403).json({
+                message : "you are not authorize to access this action"
+            });
+            return;
+        }
+    }catch(error){
+        res.status(500).json({message :"inquiry update fail"});
     }
 }
