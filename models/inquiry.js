@@ -10,14 +10,14 @@ const inquirySchema =  new mongoose.Schema({
    email : {
         type : String,
         required : true,
-        unique : true,
+       // unique : true, mek  true kiyla dala tibba nisa logic eka waraduna 
     },
     massage :{
         type : String,
         required : true,
 
     },
-    phoneNumber :{
+    phone :{
         type : String,
         required : true,
     },

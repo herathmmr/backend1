@@ -48,7 +48,8 @@ export function loginUser(req,res){
                     lastName : user.lastName,
                     email : user.email,
                     role : user.role,
-                    profilePicture:user.profilePicture,        // me thiyenne api encrypt krnn ona data tika meke thiyenne
+                    profilePicture:user.profilePicture, 
+                    phone : user.phone,       // me thiyenne api encrypt krnn ona data tika meke thiyenne
                                       },process.env.SECRET_KEY) //methna malshan1234 kiynne website eka api dana password eka //me comment ekath ain wenna ona commit krddi
                 res.json({message :" login successfull",token:token});
             }else{
@@ -72,3 +73,4 @@ let isCustomer = false;
 if(req.user != null && req.user.role == "customer"){
     return isCustomer = true;
 }return isCustomer;}
+
