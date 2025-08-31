@@ -1,4 +1,4 @@
-import e, { response } from "express";
+
 import Inquiry  from "../models/inquiry.js";
 import { isItAdmin, isItCustomer } from "./userController.js";
 
