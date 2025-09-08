@@ -102,13 +102,13 @@ export async function updateInquiry(req,res){
                 return;
             }else{
                 res.status(403).json({
-                    message : "you are not authorize to access this action"
+                    message : "1you are not authorize to access this action"
                 });
                 return;
             }
         }else{
             res.status(403).json({
-                message : "you are not authorize to access this action"
+                message : "2you are not authorize to access this action"
             });
             return;
         }
