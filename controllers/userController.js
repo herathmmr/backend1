@@ -74,3 +74,10 @@ if(req.user != null && req.user.role == "customer"){
     return isCustomer = true;
 }return isCustomer;}
 
+export function isItCustomer(req){
+
+/*let isCustomer = false;
+if(req.user != null && req.user.role == "customer"){
+    return isCustomer = true;
+}return isCustomer;}
+*/
